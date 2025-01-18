@@ -1,0 +1,117 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    height:40%;
+    background-image: url('../kota.jpeg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-icon{
+    display:flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index : 1001;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.menu-icon span{
+    display: block;
+    width:25px;
+    height:3px;
+    background-color: white;
+    transition: 0.3s;  
+}
+
+.menu-icon.active span:nth-child(1){
+    transform:rotate(45deg) translate(5px, 5px);
+    background-color: red;
+}
+.menu-icon.active span:nth-child(2){
+    opacity: 0;
+}
+
+.menu-icon.active span:nth-child(3){
+    transform: rotate(-45deg) translate(5px, -5px);
+    background-color: red;
+}
+
+.nav-links{
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    background : #7c7777;
+    position:fixed;
+    top:0;
+    right:0;
+    padding : 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    height:100vh;
+
+    li{
+        margin: 10px 0;
+    }
+
+    a{
+        text-decoration:none;
+        color: white;
+        padding: 5px 10px;
+    }
+    a:hover{
+        color: pink;
+        background-color: rgba(1, 1, 1, 0.6);
+        background-size: 100%;
+    }
+}
+.nav-links.active{
+    display:flex;
+}
+
+@media (min-width: 500px) {
+    .menu-icon {
+        display: none; /* Hide menu icon on larger screens */
+    }
+    .navbar{
+        top:0;
+    }
+
+    .nav-links {
+        display: flex; /* Show links in a row */
+        flex-direction: column;
+        position: fixed;
+        right:0;
+        top:0;
+        height:100%;
+        width:200px;
+        background: #444;
+        padding-top:20px;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+        text-align: center;
+    }
+}
+
+
+footer{
+    margin-bottom: 0;
+    background-color: #444;
+}

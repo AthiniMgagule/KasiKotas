@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+        <title>Shop Owner Registration</title>
+        <link rel="icon" href="../logo.png">
+        <link rel="stylesheet" href="../styles/shopOwners.css">
+        <link rel="stylesheet" href="../styles/index.css">
+        <script src="../scripts/shopOwners.js"></script>
+        <script src="../scripts/index.js"></script>
+    </head>
+
+    <body>
+        <header class="header" id="headerid">
+            <nav class="navbar">
+                <div class="menu-icon" id="menu-icon" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#notifications">Notifications</a></li>
+                    <li><a>Order Management</a></li>
+                    <li><a>Menu Management</a></li>
+                    <li><a href="../index.html">Signout</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+        <main>
+            <section id="ownerRegistration">
+                <form id="ownerForm" action="submitForm" autocomplete="on" method="POST">
+                    <fieldset>
+                        <legend>Shop Owner Registration</legend>
+                        <label for="ownerName">Enter Name: </label><br>
+                        <input type="text" id="ownerName" name="ownerName" required><br><br>
+
+                        <label for="ownerSurname">Enter Surname: </label><br>
+                        <input type="text" id="ownerSurname" name="ownerSurname" required><br><br>
+
+                        <label for="ownerEmail">Enter Email: </label><br>
+                        <input type="email" id="ownerEmail" name="ownerEmail" required><br><br>
+
+                        <label for="ownerEmail">Confirm Email: </label><br>
+                        <input type="email" id="ownerEmail" name="onwerEmail" required><br><br>
+
+                        <label for="ownerPassword">Enter Password: </label><br>
+                        <input type="password" id="ownerPassword" name="ownerPassword" required><br><br>
+
+                        <label for="ownerPassword">Confirm Password: </label><br>
+                        <input type="password" id="ownerPassword" name="ownerPassword" required><br><br>
+
+                        <button type="submit" id="submitBtn">Submit</button>
+                    </fieldset>
+                </form>
+            </section>
+    
+            <section id="ownerLogin">
+                <form>
+                    <fieldset>
+                        <legend>Shop Owner Login</legend>
+                        <label for="ownerEmail">Email: </label><br>
+                        <input type="email" id="ownerEmail" name="ownerEmail" required><br><br>
+
+                        <label for="ownerPassword">Password: </label><br>
+                        <input type="password" id="ownerPassword" name="ownerPassword"><br><br>
+                        
+                        <button type="submit" id="submitBtn">Submit</button>
+                    </fieldset>
+                </form>
+            </section>
+
+            <section id="shopRegistration">
+                <form id="shopOwnerForm" action="submitForm" autocomplete="on" method="POST">
+                    <fieldset>
+                        <legend>Shop Registration</legend>
+                        <label for="shopName">Shop Name: </label><br>
+                        <input type="text" id="shopName" name="shopName" required><br><br>
+
+                        <label for="shopLocation">Location: </label><br>
+                        <input type="text" id="shopLocation" name="shopLocation" required><br><br>
+
+                        <label for="ownerName">Owner Name: </label><br>
+                        <input type="text" id="ownerName" name="ownerName" required><br><br>
+
+                        <label for="ownerContact">Contact Number: </label><br>
+                        <input type="tel" id="ownerContact" name="ownerContact" required><br><br>
+
+                        <label for="shopDescription"> Shop Description</label><br>
+                        <textarea id="shopDescription" name="shopDescription" rows="4" required></textarea><br><br>
+
+                        <label for="shopImage">Upload Shop Image: </label><br>
+                        <input type="file" id="shopImage" name="shopImage"><br><br>
+
+                        <button type="submit" id="submitBtn">Submit</button>
+                    </fieldset>
+                </form>
+            </section>
+    
+            <section id="menuManagement">
+            </section>
+
+            <section id="orderManagement"></section>
+
+            <section id="feedbackReview"></section>
+        </main>
+    </body>
+</html>
