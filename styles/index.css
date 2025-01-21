@@ -2,6 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: rgb(202, 255, 159);
 }
 
 .header{
@@ -13,6 +14,14 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.logoimg{
+    height:100px;
+    width:100px;
+    border-radius: 50%;
+    position:absolute;
+    left:20px;
+    top:20px;
 }
 .navbar{
     display:flex;
@@ -83,7 +92,63 @@ html, body {
     display:flex;
 }
 
+/* Chatbot Icon */
+#chatbot-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color:  rgb(190, 104, 5); 
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#chatbot-window{
+    height:50%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color:  rgb(18, 101, 122); 
+    color: white;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#chat-output{
+    background-color: rgb(190, 104, 5);
+    height:30vh;
+    margin:15px;
+    padding:10px;
+}
+
+#close-chatbot{
+    position: absolute;
+    top: 20px;
+    right:10px;
+    font-size: larger;
+    cursor: pointer;
+
+}
+
 @media (min-width: 500px) {
+    .header{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .logoimg{
+        height:40%;
+        width:auto;
+        border-radius: 0%;
+        top:0;
+        right:0;
+        
+    }
     .menu-icon {
         display: none; /* Hide menu icon on larger screens */
     }
@@ -93,25 +158,37 @@ html, body {
 
     .nav-links {
         display: flex; /* Show links in a row */
-        flex-direction: column;
-        position: fixed;
+        flex-direction: row;
+        position: absolute;
         right:0;
-        top:0;
-        height:100%;
-        width:200px;
+        height:5%;
+        top: 10em;
+        width:100%;
         background: #444;
-        padding-top:20px;
+        padding:20px;
         background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: space-between;
     }
 
     .nav-links li {
-        margin: 20px 0;
+        margin: 20px 20px;
         text-align: center;
+    }
+    .nav-links a:hover{
+        background-color: rgba(0, 0, 0, 0.6);
+        justify-content: center;
+        align-items: center;
     }
 }
 
 
-footer{
-    margin-bottom: 0;
-    background-color: #444;
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    position:relative;
+    bottom: 0;
+    width: 100%;
 }

@@ -9,10 +9,12 @@
         <link rel="stylesheet" href="../styles/index.css">
         <script src="../scripts/shopOwners.js"></script>
         <script src="../scripts/index.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
 
     <body>
         <header class="header" id="headerid">
+            <img src="../logo.png" alt="logoimg" class="logoimg">
             <nav class="navbar">
                 <div class="menu-icon" id="menu-icon" onclick="toggleMenu()">
                     <span></span>
@@ -23,18 +25,24 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#notifications">Notifications</a></li>
-                    <li><a>Order Management</a></li>
-                    <li><a>Menu Management</a></li>
+                    <li><a href="#orderManagement">Order Management</a></li>
+                    <!-- this menu management has an option to look at the menu, edit the menu, add a new kota to the menu -->
+                    <li><a href="#menuManagement">Menu Management</a></li>
+                    <li><a href="#reports">Reports</a></li>
+                    <li><a href="#settings">Settings</a></li>
                     <li><a href="../index.html">Signout</a></li>
                 </ul>
             </nav>
         </header>
     
-        <main>
-            <section id="ownerRegistration">
-                <form id="ownerForm" action="submitForm" autocomplete="on" method="POST">
-                    <fieldset>
-                        <legend>Shop Owner Registration</legend>
+        <main class="mainClass">
+            <section id="home" class="sectionclass">
+                <h2 style="border-bottom: rgb(255, 206, 101) solid 2px; ">HOME</h2>
+            </section>
+
+            <section id="ownerRegistration" class="sectionclass">
+                <form id="ownerForm" action="submitForm" class="formclass" autocomplete="on" method="POST">
+                        <h2 style="border-bottom: rgb(255, 206, 101) solid 2px; ">SHOP OWNER REGISTRATION</h2>
                         <label for="ownerName">Enter Name: </label><br>
                         <input type="text" id="ownerName" name="ownerName" required><br><br>
 
@@ -53,30 +61,26 @@
                         <label for="ownerPassword">Confirm Password: </label><br>
                         <input type="password" id="ownerPassword" name="ownerPassword" required><br><br>
 
-                        <button type="submit" id="submitBtn">Submit</button>
-                    </fieldset>
+                        <button type="submit" id="submitBtn" class="buttonclass">Submit</button>
                 </form>
             </section>
     
-            <section id="ownerLogin">
-                <form>
-                    <fieldset>
-                        <legend>Shop Owner Login</legend>
+            <section id="ownerLogin" class="sectionclass">
+                <form class="formclass">
+                        <h2 style="border-bottom: rgb(255, 206, 101) solid 2px; ">SHOP OWNER LOGIN</h2>
                         <label for="ownerEmail">Email: </label><br>
                         <input type="email" id="ownerEmail" name="ownerEmail" required><br><br>
 
                         <label for="ownerPassword">Password: </label><br>
                         <input type="password" id="ownerPassword" name="ownerPassword"><br><br>
                         
-                        <button type="submit" id="submitBtn">Submit</button>
-                    </fieldset>
+                        <button type="submit" id="submitBtn" class="buttonclass">Submit</button>
                 </form>
             </section>
 
-            <section id="shopRegistration">
-                <form id="shopOwnerForm" action="submitForm" autocomplete="on" method="POST">
-                    <fieldset>
-                        <legend>Shop Registration</legend>
+            <section id="shopRegistration" class="sectionclass">
+                <form id="shopOwnerForm" class="formclass" action="submitForm" autocomplete="on" method="POST">
+                        <h2 style="border-bottom: rgb(255, 206, 101) solid 2px; ">SHOP REGISTRATION</h2>
                         <label for="shopName">Shop Name: </label><br>
                         <input type="text" id="shopName" name="shopName" required><br><br>
 
@@ -95,17 +99,90 @@
                         <label for="shopImage">Upload Shop Image: </label><br>
                         <input type="file" id="shopImage" name="shopImage"><br><br>
 
-                        <button type="submit" id="submitBtn">Submit</button>
-                    </fieldset>
+                        <button type="submit" id="submitBtn" class="buttonclass">Submit</button>
                 </form>
             </section>
     
-            <section id="menuManagement">
+            <!-- use a bottom navigation -->
+            <section id="menuManagement" class="sectionclass">
+                <section id="notifications"></section>
+                <!-- here you look at the menu -->
+                <section id="menuid">
+                    <!-- here we'll add the menu items dynamically -->
+                    <div id="mymenu" class="formclass">
+                        <h2 style="border-bottom: rgb(255, 206, 101) solid 2px; ">MY MENU</h2>
+                    </div>
+                    <button class="buttonclass">Delete Kota</button>
+                    <button class="buttonclass">Edit menu</button>
+                </section>
+
+                <!-- here you add a new kota to the menu -->
+                <section  id="addnewkota">
+                    <form class="formclass">
+                        <h2 style="border-bottom: rgb(255, 206, 101) solid 2px; ">ADD A KOTA TO THE MENU</h2>
+                        <label>Kota Name: </label><br>
+                        <input type="text" id="nameid" title="name" name="name" value=""><br><br>
+    
+                        <label>Price: </label><br>
+                        <input type="number" id="priceid" title="price" name="price" value=""><br><br>
+    
+                        <label></label>
+                        <label for="kotacontent">Choose Kota Ingredients: </label><br>
+                        <input type="checkbox" id="kotacontent" name="kotacontent" value="chips">Chips<br>
+                        <input type="checkbox" id="kotacontent" name="kotacontent" value="cheese">Cheese<br>
+                        <input type="checkbox" id="kotacontent" name="kotacontent" value="russian">Russian<br>
+                        <input type="checkbox" id="kotacontent" name="kotacontent" value="vienna">Vienna<br>
+                        <input type="checkbox" id="kotacontent" name="kotacontent" value="polony">Polony<br>
+                        <input type="checkbox" id="kotacontent" name="kotacontent" value="lettuce">Lettuce<br>
+                        <input type="checkbox" id="kotacontent" name="kotacontent" value="cucumber">Cucumber<br><br>
+    
+                        <label for="kotacontent">Is it toasted: </label> <br>
+                        <input type="radio" id="kotacontent" name="kotacontent" value="yes">Yes<br>
+                        <input type="radio" id="kotacontent" name="kotacontent" value="no">No<br><br>
+    
+                        <button type="submit" id="submitBtn" class="buttonclass">Submit</button>
+                    </form>
+                </section>
             </section>
 
-            <section id="orderManagement"></section>
+            <!-- here you mAnage incloming orders -->
+            <section id="orderManagement" class="sectionclass"></section>
 
+            <!-- look at anonymous feedbacks from users for your kota -->
             <section id="feedbackReview"></section>
         </main>
+
+        <!-- Chatbot Icon -->
+        <div id="chatbot-icon">
+            <i class="fas fa-comments"></i>
+        </div>
+
+        <!-- Chat Window -->
+        <div id="chatbot-window" class="chat-closed" style="display: none;" onclick="chatbox()">
+            <div id="chatbot-header">
+                <span id="close-chatbot">&times;</span>
+                <h3>AI Assistant</h3>
+                
+            </div>
+            <div id="chatbot-body">
+                <div id="chat-output">
+                    <p>Welcome to Kasi Kotas, how can I help you?</p>
+                </div>
+                <input type="text" id="chat-input" placeholder="Type a message...">
+                <button id="send-button">Send</button>
+            </div>
+        </div>
+
+        <section class="myfootnav">
+            <i class="fas fa-bell" style="color: white; cursor: pointer;" onclick="shownotifications()" ><br>Notifications</i>
+            <div class="middlefootnav" id="footnavitems">
+                <div class="plussign" onclick="addnewkota()">+</div>
+            </div>
+            <i class="fas fa-right-from-bracket" style="color: white; cursor: pointer;"><br><a href="../index.html" style="text-decoration-line: none; color: white;">Signout</a></i>
+        </section>
     </body>
+
+    <footer>
+        <p>&copy; 2025 Kasi Kotas. All Rights Reserved.</p>
+    </footer>
 </html>
