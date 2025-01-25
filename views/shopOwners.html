@@ -36,8 +36,17 @@
         </header>
     
         <main class="mainClass">
-            <section id="home" class="sectionclass">
+            <section id="home" class="homeClass" style="display:none;">
                 <h2 style="border-bottom: rgb(255, 206, 101) solid 2px; ">HOME</h2>
+                <h3>Daily Summary</h3>
+                <div>
+                    <h3>Total Orders Today</h3>
+                </div>
+
+                <div>
+                    <h3>Orders Completed</h3>
+                </div>
+
             </section>
 
             <section id="ownerRegistration" class="sectionclass">
@@ -58,14 +67,16 @@
                         <label for="ownerPassword">Enter Password: </label><br>
                         <input type="password" id="ownerPassword" name="ownerPassword" required><br><br>
 
-                        <label for="ownerPassword">Confirm Password: </label><br>
-                        <input type="password" id="ownerPassword" name="ownerPassword" required><br><br>
+                        <label for="confirmOwnerPassword">Confirm Password: </label><br>
+                        <input type="password" id="confirmOwnerPassword" name="confirmOwnerPassword" required><br><br>
 
-                        <button type="submit" id="submitBtn" class="buttonclass">Submit</button>
+                        <button type="submit" id="submitBtn" class="buttonclass" onclick="ownersignup()">Submit</button>
+
+                        <button type="button" class="buttonclass" onclick="signinpage()">Already have an account?</button>
                 </form>
             </section>
     
-            <section id="ownerLogin" class="sectionclass">
+            <section id="ownerLogin" class="sectionclass" style="display:none;">
                 <form class="formclass">
                         <h2 style="border-bottom: rgb(255, 206, 101) solid 2px; ">SHOP OWNER LOGIN</h2>
                         <label for="ownerEmail">Email: </label><br>
@@ -74,11 +85,11 @@
                         <label for="ownerPassword">Password: </label><br>
                         <input type="password" id="ownerPassword" name="ownerPassword"><br><br>
                         
-                        <button type="submit" id="submitBtn" class="buttonclass">Submit</button>
+                        <button type="submit" id="submitBtn" class="buttonclass" onclick="ownerlogin()">Submit</button>
                 </form>
             </section>
 
-            <section id="shopRegistration" class="sectionclass">
+            <section id="shopRegistration" class="sectionclass" style="display:none;">
                 <form id="shopOwnerForm" class="formclass" action="submitForm" autocomplete="on" method="POST">
                         <h2 style="border-bottom: rgb(255, 206, 101) solid 2px; ">SHOP REGISTRATION</h2>
                         <label for="shopName">Shop Name: </label><br>
@@ -104,7 +115,7 @@
             </section>
     
             <!-- use a bottom navigation -->
-            <section id="menuManagement" class="sectionclass">
+            <section id="menuManagement" class="sectionclass" style="display:none;">
                 <section id="notifications"></section>
                 <!-- here you look at the menu -->
                 <section id="menuid">
@@ -146,10 +157,11 @@
             </section>
 
             <!-- here you mAnage incloming orders -->
-            <section id="orderManagement" class="sectionclass"></section>
+             <!-- could have the option to check the history of a customer, if they have a habit of cancelling or not collecting, you tell them to pay first and get kota later -->
+            <section id="orderManagement" class="sectionclass" style="display:none;"></section>
 
             <!-- look at anonymous feedbacks from users for your kota -->
-            <section id="feedbackReview"></section>
+            <section id="feedbackReview" style="display:none;"></section>
         </main>
 
         <!-- Chatbot Icon -->
