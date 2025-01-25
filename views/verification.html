@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="verificationTitle">Email Verification</h1>
+        <p id="verificationMessage"></p>
+        <a href="/login.html" id="loginLink" style="display:none;">Go to Login</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const titleEl = document.getElementById('verificationTitle');
+            const messageEl = document.getElementById('verificationMessage');
+            const loginLink = document.getElementById('loginLink');
+
+            if (!token) {
+                titleEl.textContent = 'Verification Error';
+                titleEl.classList.add('error');
+                messageEl.textContent = 'No verification token provided.';
+                return;
+            }
+
+            fetch(`/verify-email?token=${token}`)
+                .then(response => {
+                    if (response.ok) {
+                        titleEl.textContent = 'Verification Successful';
+                        titleEl.classList.add('success');
+                        messageEl.textContent = 'Your email has been verified. You can now log in.';
+                        loginLink.style.display = 'block';
+                    } else {
+                        titleEl.textContent = 'Verification Failed';
+                        titleEl.classList.add('error');
+                        return response.text().then(text => {
+                            messageEl.textContent = text;
+                        });
+                    }
+                })
+                .catch(error => {
+                    titleEl.textContent = 'Verification Error';
+                    titleEl.classList.add('error');
+                    messageEl.textContent = 'An unexpected error occurred.';
+                });
+        });
+    </script>
+</body>
+</html>
