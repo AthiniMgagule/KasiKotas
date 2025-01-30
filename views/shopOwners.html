@@ -162,39 +162,39 @@
 
             <!-- look at anonymous feedbacks from users for your kota -->
             <section id="feedbackReview" style="display:none;"></section>
+
+            <!-- Chatbot Icon -->
+            <div id="chatbot-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+
+            <!-- Chat Window -->
+            <div id="chatbot-window" class="chat-closed" style="display: none;" onclick="chatbox()">
+                <div id="chatbot-header">
+                    <span id="close-chatbot">&times;</span>
+                    <h3>AI Assistant</h3>
+                    
+                </div>
+                <div id="chatbot-body">
+                    <div id="chat-output">
+                        <p>Welcome to Kasi Kotas, how can I help you?</p>
+                    </div>
+                    <input type="text" id="chat-input" placeholder="Type a message...">
+                    <button id="send-button">Send</button>
+                </div>
+            </div>
         </main>
 
-        <!-- Chatbot Icon -->
-        <div id="chatbot-icon">
-            <i class="fas fa-comments"></i>
-        </div>
-
-        <!-- Chat Window -->
-        <div id="chatbot-window" class="chat-closed" style="display: none;" onclick="chatbox()">
-            <div id="chatbot-header">
-                <span id="close-chatbot">&times;</span>
-                <h3>AI Assistant</h3>
-                
-            </div>
-            <div id="chatbot-body">
-                <div id="chat-output">
-                    <p>Welcome to Kasi Kotas, how can I help you?</p>
-                </div>
-                <input type="text" id="chat-input" placeholder="Type a message...">
-                <button id="send-button">Send</button>
-            </div>
-        </div>
-
-        <section class="myfootnav">
+        <section class="myfootnav" id="myfootnav">
             <i class="fas fa-bell" style="color: white; cursor: pointer;" onclick="shownotifications()" ><br>Notifications</i>
             <div class="middlefootnav" id="footnavitems">
                 <div class="plussign" onclick="addnewkota()">+</div>
             </div>
             <i class="fas fa-right-from-bracket" style="color: white; cursor: pointer;"><br><a href="../index.html" style="text-decoration-line: none; color: white;">Signout</a></i>
         </section>
+        
+        <footer>
+            <p>&copy; 2025 Kasi Kotas. All Rights Reserved.</p>
+        </footer>
     </body>
-
-    <footer>
-        <p>&copy; 2025 Kasi Kotas. All Rights Reserved.</p>
-    </footer>
 </html>
