@@ -24,54 +24,64 @@ document.addEventListener("DOMContentLoaded", chatbox);
 
 
 async function ownersignup() {
-    document.getElementById('ownerForm').addEventListener('submit', async function (event) {
-        event.preventDefault();
+    const ownerName = document.getElementById('ownerName').value;
+    const ownerContact = document.getElementById('ownerContact').value;
+    const ownerEmail = document.getElementById('ownerEmail').value;
+    const ownerPassword = document.getElementById('ownerPassword').value;
+    const confirmPassword = document.getElementById('confirmOwnerPassword').value;
     
-        const ownerName = document.getElementById('ownerName').value;
-        const ownerSurname = document.getElementById('ownerSurname').value;
-        const ownerEmail = document.getElementById('ownerEmail').value;
-        const ownerPassword = document.getElementById('ownerPassword').value;
-        const confirmPassword = document.getElementById('confirmOwnerPassword').value;
+    console.log('Request Data:', { ownerName, ownerContact, ownerEmail }); // Log request data
+    
+    if (ownerPassword !== confirmPassword) {
+        alert('Passwords do not match.');
+        return;
+    }
+
+    const data = { ownerName, ownerContact, ownerEmail, ownerPassword };
+
+    try {
+        const response = await fetch('https://kasikotas-api.onrender.com/ownerSignup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        // Log the full response for debugging
+        console.log('Response status:', response.status);
+        console.log('Response headers:', [...response.headers.entries()]);
         
-        console.log('Name:', ownerName);
-        console.log('Surname', ownerSurname);
-        console.log('Email:', ownerEmail);
-        console.log('Password:', ownerPassword);
-        console.log('Confirm Password:', confirmPassword);
-    
-        if (ownerPassword !== confirmPassword) {
-            alert('Passwords do not match.');
-            return;
+        const responseText = await response.text();
+        console.log('Response body:', responseText);
+
+        if (response.ok) {
+            const result = responseText ? JSON.parse(responseText) : {};
+            alert('User created successfully!');
+            const ownerRegistration = document.getElementById("ownerRegistration");
+            const ownerLogin = document.getElementById("ownerLogin");
+            ownerRegistration.style.display = 'none';
+            ownerLogin.style.display = 'block';
+        } else {
+            throw new Error(responseText || `Server error: ${response.status}`);
         }
-    
-        const data = { ownerName, ownerSurname, ownerEmail, ownerPassword };
-    
-        try {
-            const response = await fetch('https://kasikotas-api.onrender.com/ownerSignup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-    
-            if (response.ok) {
-                const result = await response.json();
-                alert('User created successfully!');
-                // Redirect to login
-                window.location.href = '#login';
-            } else {
-                const error = await response.text();
-                alert('User already exists, try logging in');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An unexpected error occurred.');
-        }
-    });
+    } catch (error) {
+        console.error('Detailed error:', error);
+        alert(`Registration failed: ${error.message}`);
+    }
 }
 
-document.addEventListener("DOMContentLoaded", ownersignup);
+// Set up event listener once when document loads
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById('ownerForm');
+    if (form) {
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            await ownersignup();
+        });
+    }
+});
 
 function signinpage(){
     const ownerRegistration = document.getElementById("ownerRegistration");
