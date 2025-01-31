@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Verification</title>
     <style>
         body {
@@ -25,17 +25,30 @@
         .error {
             color: red;
         }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .loading {
+            color: #666;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 id="verificationTitle">Email Verification</h1>
-        <p id="verificationMessage"></p>
-        <a href="shopOwners.html" id="loginLink" style="display:none;" onclick="signinpage()">Go to Login</a>
+        <p id="verificationMessage" class="loading">Verifying your email...</p>
+        <a href="shopOwners.html" id="loginLink" style="display:none;" class="button">Go to Login</a>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        async function verifyEmail() {
             const urlParams = new URLSearchParams(window.location.search);
             const token = urlParams.get('token');
             const titleEl = document.getElementById('verificationTitle');
@@ -46,30 +59,49 @@
                 titleEl.textContent = 'Verification Error';
                 titleEl.classList.add('error');
                 messageEl.textContent = 'No verification token provided.';
+                messageEl.classList.remove('loading');
                 return;
             }
 
-            fetch(`/verify-email?token=${token}`)
-                .then(response => {
-                    if (response.ok) {
-                        titleEl.textContent = 'Verification Successful';
-                        titleEl.classList.add('success');
-                        messageEl.textContent = 'Your email has been verified. You can now log in.';
-                        loginLink.style.display = 'block';
-                    } else {
-                        titleEl.textContent = 'Verification Failed';
-                        titleEl.classList.add('error');
-                        return response.text().then(text => {
-                            messageEl.textContent = text;
-                        });
+            try {
+                const response = await fetch(`https://kasikotas-api.onrender.com/verify-email?token=${token}`, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
                     }
-                })
-                .catch(error => {
-                    titleEl.textContent = 'Verification Error';
-                    titleEl.classList.add('error');
-                    messageEl.textContent = 'An unexpected error occurred.';
                 });
-        });
+
+                messageEl.classList.remove('loading');
+
+                if (response.ok) {
+                    titleEl.textContent = 'Verification Successful';
+                    titleEl.classList.add('success');
+                    messageEl.textContent = 'Your email has been verified. You can now log in.';
+                    messageEl.classList.add('success');
+                    loginLink.style.display = 'block';
+                    
+                    // Automatically redirect after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = 'shopOwners.html#login';
+                    }, 3000);
+                } else {
+                    const errorText = await response.text();
+                    titleEl.textContent = 'Verification Failed';
+                    titleEl.classList.add('error');
+                    messageEl.textContent = errorText || 'Verification failed. Please try again or contact support.';
+                    messageEl.classList.add('error');
+                }
+            } catch (error) {
+                console.error('Verification error:', error);
+                titleEl.textContent = 'Verification Error';
+                titleEl.classList.add('error');
+                messageEl.textContent = 'An unexpected error occurred. Please try again later.';
+                messageEl.classList.add('error');
+                messageEl.classList.remove('loading');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', verifyEmail);
     </script>
 </body>
 </html>
