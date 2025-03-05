@@ -1,2 +1,8 @@
-# KasiKotas
-User-friendly platform designed to help users discover the best kota spots around Diepsloot, explore menus, and conveniently place orders for self-pickup. It connects customers with local vendors, allowing shop owners to manage their offerings, receive orders, and update statuses-all in one place.
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
