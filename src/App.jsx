@@ -1,15 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-// import MainNavbar from './components/shared/MainNavbar';
 import WelcomePage from './components/users/UsersWelcomePage';
+import OwnersWelcomePage from './components/owner/OwnersWelcomePage';
 import ShopOwnerSignup from './components/owner/ShopOwnerSignup';
 import ShopOwnerLogin from './components/owner/ShopOwnerLogin';
 import ShopOwnerDashboard from './components/owner/ShopOwnerDashboard';
-import OwnersWelcomePage from './components/owner/OwnersWelcomePage';
-// import ShopRegistration from './components/owner/ShopRegistration';
-// import EmailVerification from './pages/EmailVerification';
-// import Footer from './components/shared/Footer';
+import OwnersFooter from './components/owner/OwnersFooter';
+import Verification from './components/Verification';
+
 
 // Create a custom theme with Kasi Kotas brand colors
 const theme = createTheme({
@@ -59,15 +58,14 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        {/* <MainNavbar /> */}
         <Routes>
           <Route path="/" element={<WelcomePage />} />
           <Route path="/owner/welcomepage" element={<OwnersWelcomePage />} />
           <Route path="/owner/signup" element={<ShopOwnerSignup />} />
           <Route path="/owner/login" element={<ShopOwnerLogin />} />
           <Route path="/owner/dashboard/*" element={<ShopOwnerDashboard />} />
-          {/* <Route path="/owner/shop-registration" element={<ShopRegistration />} />
-          <Route path="/verify-email" element={<EmailVerification />} /> */}
+          <Route path="/owner/footer/" element={<OwnersFooter />} />
+          <Route path="/owner/verify-email" element={<Verification />} />
         </Routes>
         {/* <Footer /> */}
       </Router>
