@@ -22,12 +22,13 @@ import LockIcon from '@mui/icons-material/Lock';
 const ShopOwnerSignup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    ownerName: '',
-    ownerContact: '',
-    ownerEmail: '',
+    name: '',
+    contact: '',
+    email: '',
     confirmEmail: '',
-    ownerPassword: '',
+    password: '',
     confirmPassword: '',
+    userType: 'owner',
   });
   
   const [showPassword, setShowPassword] = useState(false);
@@ -56,38 +57,38 @@ const ShopOwnerSignup = () => {
     const newErrors = {};
     
     // Validate name
-    if (!formData.ownerName.trim()) {
-      newErrors.ownerName = 'Name is required';
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
     }
     
     // Validate contact
-    if (!formData.ownerContact) {
-      newErrors.ownerContact = 'Contact number is required';
-    } else if (!/^\d{10}$/.test(formData.ownerContact)) {
-      newErrors.ownerContact = 'Please enter a valid 10-digit contact number';
+    if (!formData.contact) {
+      newErrors.contact = 'Contact number is required';
+    } else if (!/^\d{10}$/.test(formData.contact)) {
+      newErrors.contact = 'Please enter a valid 10-digit contact number';
     }
     
     // Validate email
-    if (!formData.ownerEmail) {
-      newErrors.ownerEmail = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.ownerEmail)) {
-      newErrors.ownerEmail = 'Please enter a valid email address';
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
     }
     
     // Validate confirm email
-    if (formData.ownerEmail !== formData.confirmEmail) {
+    if (formData.email !== formData.confirmEmail) {
       newErrors.confirmEmail = 'Emails do not match';
     }
     
     // Validate password
-    if (!formData.ownerPassword) {
-      newErrors.ownerPassword = 'Password is required';
-    } else if (formData.ownerPassword.length < 8) {
-      newErrors.ownerPassword = 'Password must be at least 8 characters';
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 8) {
+      newErrors.password = 'Password must be at least 8 characters';
     }
     
     // Validate confirm password
-    if (formData.ownerPassword !== formData.confirmPassword) {
+    if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = 'Passwords do not match';
     }
     
@@ -103,17 +104,19 @@ const ShopOwnerSignup = () => {
     }
     
     try {
-      const { confirmEmail, confirmPassword, ...submitData } = formData;
+      const { userType, ...submitData } = formData;
+
+      console.log("Sending data: ", formData);
       
       console.log('Request Data:', submitData);
       
-      const response = await fetch('http://localhost:2025/ownerSignup', {
+      const response = await fetch('https://kasikotas-api.onrender.com/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(submitData)
+        body: JSON.stringify(formData)
       });
       
       console.log('Response status:', response.status);
@@ -178,13 +181,13 @@ const ShopOwnerSignup = () => {
               <TextField
                 fullWidth
                 required
-                id="ownerName"
-                name="ownerName"
+                id="name"
+                name="name"
                 label="Full Name"
-                value={formData.ownerName}
+                value={formData.name}
                 onChange={handleChange}
-                error={!!errors.ownerName}
-                helperText={errors.ownerName}
+                error={!!errors.name}
+                helperText={errors.name}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -199,14 +202,14 @@ const ShopOwnerSignup = () => {
               <TextField
                 fullWidth
                 required
-                id="ownerContact"
-                name="ownerContact"
+                id="contact"
+                name="contact"
                 label="Contact Number"
                 type="tel"
-                value={formData.ownerContact}
+                value={formData.contact}
                 onChange={handleChange}
-                error={!!errors.ownerContact}
-                helperText={errors.ownerContact}
+                error={!!errors.contact}
+                helperText={errors.contact}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -221,14 +224,14 @@ const ShopOwnerSignup = () => {
               <TextField
                 fullWidth
                 required
-                id="ownerEmail"
-                name="ownerEmail"
+                id="email"
+                name="email"
                 label="Email Address"
                 type="email"
-                value={formData.ownerEmail}
+                value={formData.email}
                 onChange={handleChange}
-                error={!!errors.ownerEmail}
-                helperText={errors.ownerEmail}
+                error={!!errors.email}
+                helperText={errors.email}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -265,14 +268,14 @@ const ShopOwnerSignup = () => {
               <TextField
                 fullWidth
                 required
-                id="ownerPassword"
-                name="ownerPassword"
+                id="password"
+                name="password"
                 label="Password"
                 type={showPassword ? 'text' : 'password'}
-                value={formData.ownerPassword}
+                value={formData.password}
                 onChange={handleChange}
-                error={!!errors.ownerPassword}
-                helperText={errors.ownerPassword}
+                error={!!errors.password}
+                helperText={errors.password}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">

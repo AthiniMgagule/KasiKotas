@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate, Link } from 'react-router-dom';
+import { Routes, Route, useNavigate, Outlet, Link } from 'react-router-dom';
 import { 
   Box, 
   Drawer, 
@@ -31,15 +31,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
-// Import dashboard pages (we'll create these components next)
-// import DashboardHome from './dashboard/DashboardHome';
-// import MenuManagement from './dashboard/MenuManagement';
+import DashboardHome from './dashboard/DashboardHome';
+import MenuManagement from './dashboard/MenuManagement';
 // import OrderManagement from './dashboard/OrderManagement';
 // import Notifications from './dashboard/Notifications';
 // import FeedbackReview from './dashboard/FeedbackReview';
 // import Settings from './dashboard/Settings';
-// import AddKota from './dashboard/AddKota';
+import AddKota from './dashboard/AddKota';
 
 const drawerWidth = 240;
 
@@ -135,7 +133,7 @@ const ShopOwnerDashboard = () => {
   };
   
   const menuItems = [
-    { text: 'Home', icon: <HomeIcon />, path: '/owner/dashboard' },
+    { text: 'Home', icon: <HomeIcon />, path: '/owner/dashboard/' },
     { text: 'Menu Management', icon: <RestaurantMenuIcon />, path: '/owner/dashboard/menu' },
     { text: 'Order Management', icon: <ShoppingBasketIcon />, path: '/owner/dashboard/orders' },
     { 
@@ -251,15 +249,16 @@ const ShopOwnerDashboard = () => {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        {/* <Routes>
-          <Route path="/owner/dashboard" element={<DashboardHome />} />
-          <Route path="/owner/dashboard/menu" element={<MenuManagement />} />
-          <Route path="/owner/dashboard/orders" element={<OrderManagement />} />
+        <Routes>
+          <Route path="/" element={<DashboardHome />} />
+          <Route path="/menu" element={<MenuManagement />} />
+          {/* <Route path="/owner/dashboard/orders" element={<OrderManagement />} />
           <Route path="/owner/dashboard/notifications" element={<Notifications />} />
           <Route path="/owner/dashboard/feedback" element={<FeedbackReview />} />
-          <Route path="/owner/dashboard/settings" element={<Settings />} />
-          <Route path="/owner/dashboard/menu/add" element={<AddKota />} />
-        </Routes> */}
+          <Route path="/owner/dashboard/settings" element={<Settings />} /> */}
+          <Route path="/menu/add" element={<AddKota />} />
+        </Routes>
+        <Outlet />
       </Main>
     </Box>
   );

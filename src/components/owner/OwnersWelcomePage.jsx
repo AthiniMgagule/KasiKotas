@@ -74,8 +74,8 @@ const OwnersWelcomePage = () => {
       icon: <AnalyticsIcon fontSize="large" color="primary" />
     },
     {
-      title: "Mobile App",
-      description: "Manage your restaurant on the go with our fully-featured mobile application.",
+      title: "Mobile App ( Coming Soon )",
+      description: "Manage your kota store on the go with our fully-featured mobile application.",
       icon: <AppIcon fontSize="large" color="primary" />
     },
     {
@@ -115,7 +115,7 @@ const OwnersWelcomePage = () => {
                 flexGrow: isMobile ? 1 : 0
               }}
             >
-              FoodHub
+              Kasi Kotas
             </Typography>
 
             {isMobile ? (
@@ -193,7 +193,7 @@ const OwnersWelcomePage = () => {
       {/* Hero Section */}
       <Box
         sx={{
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://source.unsplash.com/random/1600x900/?restaurant,food")',
+          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           color: 'white',
@@ -211,7 +211,7 @@ const OwnersWelcomePage = () => {
                 mb: 3
               }}
             >
-              Restaurant Management Made Simple
+              Kota Store Management Made Simple
             </Typography>
           </Fade>
           
@@ -280,10 +280,10 @@ const OwnersWelcomePage = () => {
         <Slide direction="up" in={animate} timeout={1000}>
           <Box sx={{ textAlign: 'center', mb: 6 }}>
             <Typography variant="h3" gutterBottom>
-              Why Restaurant Owners Choose Us
+              Why Kota Store Owners Choose Us
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" sx={{ maxWidth: 700, mx: 'auto' }}>
-              Join thousands of successful restaurants that have transformed their business with our platform.
+              Join thousands of successful kota stores that have transformed their business with our platform.
             </Typography>
           </Box>
         </Slide>
@@ -330,7 +330,7 @@ const OwnersWelcomePage = () => {
           <Slide direction="up" in={animate} timeout={1000}>
             <Box sx={{ textAlign: 'center', mb: 6 }}>
               <Typography variant="h3" gutterBottom>
-                Perfect for All Restaurant Types
+                Perfect for All Kota Store Types
               </Typography>
               <Typography variant="subtitle1" color="text.secondary" sx={{ maxWidth: 700, mx: 'auto' }}>
                 Whether you run a food truck or a fine dining establishment, our platform scales to fit your needs.
@@ -447,12 +447,12 @@ const OwnersWelcomePage = () => {
         <Container maxWidth="md">
           <Fade in={animate} timeout={1000}>
             <Typography variant="h3" gutterBottom>
-              Ready to Transform Your Restaurant?
+              Ready to Transform Your Kota Store?
             </Typography>
           </Fade>
           <Fade in={animate} timeout={1500}>
             <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-              Join thousands of restaurants already growing their business with FoodHub.
+              Join dozens of kota stores already growing their business with Kasi Kotas.
             </Typography>
           </Fade>
           <Fade in={animate} timeout={2000}>

@@ -50,15 +50,15 @@ const ShopOwnerLogin = () => {
     const newErrors = {};
     
     // Validate email
-    if (!formData.ownerEmail) {
-      newErrors.ownerEmail = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.ownerEmail)) {
-      newErrors.ownerEmail = 'Please enter a valid email address';
+    if (!formData.email) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
     }
     
     // Validate password
-    if (!formData.ownerPassword) {
-      newErrors.ownerPassword = 'Password is required';
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
     }
     
     setErrors(newErrors);
@@ -73,9 +73,9 @@ const ShopOwnerLogin = () => {
     }
     
     try {
-      console.log('Login Request Data:', { email: formData.ownerEmail });
+      console.log('Login Request Data:', formData); //note formData only contains data that was added on the form so the id would not be there
       
-      const response = await fetch('http://localhost:2025/ownerLogin', {
+      const response = await fetch('https://kasikotas-api.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,14 +86,18 @@ const ShopOwnerLogin = () => {
       
       if (response.ok) {
         const result = await response.json();
+
+        console.log('owner details: ', result);
         
         // Store token or user info in localStorage
         localStorage.setItem('kasikotas_token', result.token);
         localStorage.setItem('kasikotas_owner', JSON.stringify({
-          id: result.ownerId,
-          name: result.ownerName,
-          email: result.ownerEmail
+          id: result.id,
+          name: result.name,
+          email: result.email
         }));
+
+       
         
         setSnackbar({
           open: true,
@@ -149,14 +153,14 @@ const ShopOwnerLogin = () => {
               <TextField
                 fullWidth
                 required
-                id="ownerEmail"
-                name="ownerEmail"
+                id="email"
+                name="email"
                 label="Email Address"
                 type="email"
-                value={formData.ownerEmail}
+                value={formData.email}
                 onChange={handleChange}
-                error={!!errors.ownerEmail}
-                helperText={errors.ownerEmail}
+                error={!!errors.email}
+                helperText={errors.email}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -171,14 +175,14 @@ const ShopOwnerLogin = () => {
               <TextField
                 fullWidth
                 required
-                id="ownerPassword"
-                name="ownerPassword"
+                id="password"
+                name="password"
                 label="Password"
                 type={showPassword ? 'text' : 'password'}
-                value={formData.ownerPassword}
+                value={formData.password}
                 onChange={handleChange}
-                error={!!errors.ownerPassword}
-                helperText={errors.ownerPassword}
+                error={!!errors.password}
+                helperText={errors.password}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
