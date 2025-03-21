@@ -21,7 +21,7 @@ function VerifyEmail() {
         const response = await fetch(`https://kasikotas-api.onrender.com/verify-email?token=${token}`);
         if (response.ok) {
           setStatus({ message: 'Email verified. Redirecting...', isLoading: false });
-          setTimeout(() => navigate('owner/login', { replace: true }), 3000);
+          setTimeout(() => navigate('/owner/login', { replace: true }), 3000);
         } else {
           setStatus({ message: 'Verification failed. Try again.', isLoading: false, isError: true });
         }
